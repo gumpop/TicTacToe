@@ -12,8 +12,8 @@ public class TicTacToe {
 		board = new Board();
 	}
 
-	//method playGame will start the game
-	public void playGame() {
+	//method playGame will start the game (returns winner or '-' for none
+	public char playGame() {
 		board.setUp(); //set up the board to play
 		//begin prompting the player for info
 		System.out.println("Welcome to TicTacToe!\nPlayer X will go first.");
@@ -27,22 +27,23 @@ public class TicTacToe {
 				win = board.checkForWin('X'); //check for a win!
 				if(win) { //if x wins tell them and end game
 					System.out.println("PLAYER X WINS!!!!!!!!");
-					return;
+					return 'X';
 				}
 			} else {
 				startRound('O');
 				win = board.checkForWin('O'); //check for a win!
 				if(win) { //if x wins tell them and end game
 					System.out.println("PLAYER O WINS!!!!!!!!");
-					return;
+					return 'O';
 				}
 			}
 			if(board.checkForTie()) { //if theres a tie
 				System.out.println("You tied! Well played :)");
-				return;
+				return '-';
 			}
 			round++;
 		}
+		return '-';
 	}
 	
 	//method prompts player for choice and takes a turn

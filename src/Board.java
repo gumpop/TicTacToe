@@ -58,11 +58,51 @@ public class Board {
 		return true;
 	}
 	
+	//used for mega TTT. It needs to ensure it has a valid choice, but does not want a letter assigned until the game is over
+	public boolean isValid(char choice) {
+		switch(choice) {
+		case '1':
+			if(board[0][0]=='X' || board[0][0]=='O' || board[0][0]=='-') return false; //if the space has been selected, return false
+			break;
+		case '2':
+			if(board[0][1]=='X' || board[0][1]=='O' || board[0][1]=='-') return false;
+			break;
+		case '3':
+			if(board[0][2]=='X' || board[0][2]=='O' || board[0][2]=='-') return false;
+			break;
+		case '4':
+			if(board[1][0]=='X' || board[1][0]=='O' || board[1][0]=='-') return false;
+			break;
+		case '5':
+			if(board[1][1]=='X' || board[1][1]=='O' || board[1][1]=='-') return false;
+			break;
+		case '6':
+			if(board[1][2]=='X' || board[1][2]=='O' || board[1][2]=='-') return false;
+			break;
+		case '7':
+			if(board[2][0]=='X' || board[2][0]=='O' || board[2][0]=='-') return false;
+			break;
+		case '8':
+			if(board[2][1]=='X' || board[2][1]=='O' || board[2][1]=='-') return false;
+			break;
+		case '9':
+			if(board[2][2]=='X' || board[2][2]=='O' || board[2][2]=='-') return false;
+			break;
+		default: //if none of those, invalid move
+			return false;
+		}
+		return true;
+	}
+	//also for megaTTT
+	public void setChar(int row, int col, char result) {
+		board[row][col] = result;
+	}
+	
 	//check for tie will be called after each round
 	public boolean checkForTie() { //doesnt need to know player to check a tie
 		for(char[] row: board) {
 			for(char c: row) {
-				if(c!='X' && c!='O') { // if the tile is NOT taken, it cant be a tie
+				if(c!='X' && c!='O' && c!='-') { // if the tile is NOT taken, it cant be a tie
 					return false;
 				}
 			}
